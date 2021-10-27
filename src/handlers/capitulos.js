@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const { CapitulosModel: Capitulos } = require('../models/capitulos');
-//const permissions = require('../middlewares/permissions');
 
 // Find all categories
 router.get('/', async (req, res) => {
-  const categories = await Capitulos.find().exec();
+  const chapters = await Capitulos.find().exec();
 
   return res.json({
-    results: categories,
+    results: chapters,
   });
 });
 

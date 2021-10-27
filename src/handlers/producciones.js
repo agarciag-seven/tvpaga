@@ -1,19 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const { ProduccionesModel: Producciones } = require('../models/producciones');
-//const permissions = require('../middlewares/permissions');
 
 // Find all categories
-router.get('/'/*, permissions('admin', 'customer')*/, async (req, res) => {
-  const categories = await Producciones.find().exec();
+router.get('/', async (req, res) => {
+  const productions = await Producciones.find().exec();
 
   return res.json({
-    results: categories,
+    results: productions,
   });
 });
 
 // Find Producciones by id
-router.get('/:id'/*, permissions('admin')*/, async (req,res) => {
+router.get('/:id', async (req,res) => {
   const { id } = req.params;
   const Producciones = await Producciones.findById(id);
 
@@ -29,7 +28,7 @@ router.get('/:id'/*, permissions('admin')*/, async (req,res) => {
 });
 
 // Create a new Producciones
-router.post('/'/*, permissions('admin')*/, async (req, res) => {
+router.post('/', async (req, res) => {
   const {
     nombre,
     descripcion,
@@ -47,7 +46,7 @@ router.post('/'/*, permissions('admin')*/, async (req, res) => {
 });
 
 // Delete Producciones by id
-router.delete('/:id' /*, permissions('admin')*/, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   await Producciones.findByIdAndDelete(id);
 
@@ -57,7 +56,7 @@ router.delete('/:id' /*, permissions('admin')*/, async (req, res) => {
 });
 
 // Modify Producciones by id
-router.put('/:id', /*permissions('admin'),*/ async (req, res) => {
+router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const {
     nombre,

@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const { CanalesModel: Canales } = require('../models/canales');
-//const permissions = require('../middlewares/permissions');
 
 // Find all channels
 router.get('/', async (req, res) => {
@@ -13,7 +12,7 @@ router.get('/', async (req, res) => {
 });
 
 // Find channel by id
-router.get('/:id'/*, permissions('admin')*/, async (req,res) => {
+router.get('/:id', async (req,res) => {
   const { id } = req.params;
   const Canales = await Canales.findById(id);
 
