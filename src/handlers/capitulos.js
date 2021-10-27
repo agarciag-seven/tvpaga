@@ -1,86 +1,90 @@
 const express = require('express');
 const router = express.Router();
-const { CanalesModel: Canales } = require('../models/canales');
+const { CapitulosModel: Capitulos } = require('../models/capitulos');
 //const permissions = require('../middlewares/permissions');
 
 // Find all categories
 router.get('/'/*, permissions('admin', 'customer')*/, async (req, res) => {
-  const categories = await Canales.find().exec();
+  const categories = await Capitulos.find().exec();
 
   return res.json({
     results: categories,
   });
 });
 
-// Find Canales by id
+// Find Capitulos by id
 router.get('/:id'/*, permissions('admin')*/, async (req,res) => {
   const { id } = req.params;
-  const Canales = await Canales.findById(id);
+  const Capitulos = await Capitulos.findById(id);
 
-  if (!Canales) {
+  if (!Capitulos) {
     return res.status(404).json({
-      message: 'Canales not found',
+      message: 'Capitulos not found',
     });
   }
 
   return res.json({
-    data: Canales,
+    data: Capitulos,
   });
 });
 
-// Create a new Canales
+// Create a new Capitulos
 router.post('/'/*, permissions('admin')*/, async (req, res) => {
   const {
-    nombre,
-    descripcion,
-    logo,
+    media,
+    bloques,
+    duracion,
+    estado,
   } = req.body;
 
   // TODO: Validate fields
 
-  const Canales = new Canales({
-    nombre,
-    descripcion,
-    logo,
+  const Capitulos = new Capitulos({
+    media,
+    bloques,
+    duracion,
+    estado,
   });
 
-  await Canales.save();
+  await Capitulos.save();
   return res.status(201).json();
 });
 
-// Delete Canales by id
+// Delete Capitulos by id
 router.delete('/:id' /*, permissions('admin')*/, async (req, res) => {
   const { id } = req.params;
-  await Canales.findByIdAndDelete(id);
+  await Capitulos.findByIdAndDelete(id);
 
   return res.json({
-    message: 'Canales deleted',
+    message: 'Capitulos deleted',
   });
 });
 
-// Modify Canales by id
+// Modify Capitulos by id
 router.put('/:id', /*permissions('admin'),*/ async (req, res) => {
   const { id } = req.params;
   const {
-    nombre,
-    descripcion,
-    logo,
+    media,
+    bloques,
+    duracion,
+    estado,
   } = req.body;
 
-  const Canales = await Canales.findByIdAndUpdate(id, {
-    nombre,
-    descripcion,
-    logo,
+  const Capitulos = await Capitulos.findByIdAndUpdate(id, {
+    media,
+    bloques,
+    duracion,
+    estado,
   }, { new: true })
 
-  if (!Canales) {
+  if (!Capitulos) {
     return res.status(404).json({
-      message: 'Canales not found',
+      message: 'Capitulos not found',
     });
   }
 
   return res.json({
-    data: Canales,
+    data: Capitulos,
   });
 });
 
