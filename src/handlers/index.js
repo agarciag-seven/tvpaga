@@ -9,7 +9,7 @@ router.use('/auth', require('./auth'));
 router.use(authorization); */
 router.use('/canales', require('./canales'));
 router.use('/capitulos', require('./capitulos'));
-router.use('/producciones',require('/producciones'));
+router.use('/producciones',require('./producciones'));
 
 
 module.exports = router;

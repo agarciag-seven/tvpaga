@@ -3,16 +3,16 @@ const router = express.Router();
 const { CanalesModel: Canales } = require('../models/canales');
 //const permissions = require('../middlewares/permissions');
 
-// Find all categories
-router.get('/'/*, permissions('admin', 'customer')*/, async (req, res) => {
-  const categories = await Canales.find().exec();
+// Find all channels
+router.get('/', async (req, res) => {
+  const channels = await Canales.find().exec();
 
   return res.json({
-    results: categories,
+    results: channels,
   });
 });
 
-// Find Canales by id
+// Find channel by id
 router.get('/:id'/*, permissions('admin')*/, async (req,res) => {
   const { id } = req.params;
   const Canales = await Canales.findById(id);
@@ -28,8 +28,9 @@ router.get('/:id'/*, permissions('admin')*/, async (req,res) => {
   });
 });
 
-// Create a new Canales
-router.post('/'/*, permissions('admin')*/, async (req, res) => {
+// Create a new channel
+router.post('/', async (req, res) => {
+  console.log(req.body);
   const {
     nombre,
     descripcion,
@@ -49,7 +50,7 @@ router.post('/'/*, permissions('admin')*/, async (req, res) => {
 });
 
 // Delete Canales by id
-router.delete('/:id' /*, permissions('admin')*/, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   await Canales.findByIdAndDelete(id);
 
@@ -59,7 +60,7 @@ router.delete('/:id' /*, permissions('admin')*/, async (req, res) => {
 });
 
 // Modify Canales by id
-router.put('/:id', /*permissions('admin'),*/ async (req, res) => {
+router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const {
     nombre,

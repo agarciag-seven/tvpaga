@@ -4,7 +4,7 @@ const { CapitulosModel: Capitulos } = require('../models/capitulos');
 //const permissions = require('../middlewares/permissions');
 
 // Find all categories
-router.get('/'/*, permissions('admin', 'customer')*/, async (req, res) => {
+router.get('/', async (req, res) => {
   const categories = await Capitulos.find().exec();
 
   return res.json({
@@ -13,7 +13,7 @@ router.get('/'/*, permissions('admin', 'customer')*/, async (req, res) => {
 });
 
 // Find Capitulos by id
-router.get('/:id'/*, permissions('admin')*/, async (req,res) => {
+router.get('/:id', async (req,res) => {
   const { id } = req.params;
   const Capitulos = await Capitulos.findById(id);
 
@@ -29,7 +29,7 @@ router.get('/:id'/*, permissions('admin')*/, async (req,res) => {
 });
 
 // Create a new Capitulos
-router.post('/'/*, permissions('admin')*/, async (req, res) => {
+router.post('/', async (req, res) => {
   const {
     media,
     bloques,
@@ -51,7 +51,7 @@ router.post('/'/*, permissions('admin')*/, async (req, res) => {
 });
 
 // Delete Capitulos by id
-router.delete('/:id' /*, permissions('admin')*/, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   await Capitulos.findByIdAndDelete(id);
 
@@ -61,7 +61,7 @@ router.delete('/:id' /*, permissions('admin')*/, async (req, res) => {
 });
 
 // Modify Capitulos by id
-router.put('/:id', /*permissions('admin'),*/ async (req, res) => {
+router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const {
     media,
