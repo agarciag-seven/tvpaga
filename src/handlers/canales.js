@@ -14,22 +14,22 @@ router.get('/', async (req, res) => {
 // Find channel by id
 router.get('/:id', async (req,res) => {
   const { id } = req.params;
-  const Canales = await Canales.findById(id);
+  const CanalesResult = await Canales.findById(id);
 
-  if (!Canales) {
+  if (!CanalesResult) {
     return res.status(404).json({
       message: 'Canales not found',
     });
   }
 
   return res.json({
-    data: Canales,
+    data: CanalesResult,
   });
 });
 
 // Create a new channel
 router.post('/', async (req, res) => {
-  console.log(req.body);
+
   const {
     nombre,
     descripcion,
@@ -38,13 +38,13 @@ router.post('/', async (req, res) => {
 
   // TODO: Validate fields
 
-  const Canales = new Canales({
+  const CanalesTab = new Canales({
     nombre,
     descripcion,
     logo,
   });
 
-  await Canales.save();
+  await CanalesTab.save();
   return res.status(201).json();
 });
 
@@ -67,20 +67,20 @@ router.put('/:id', async (req, res) => {
     logo,
   } = req.body;
 
-  const Canales = await Canales.findByIdAndUpdate(id, {
+  const CanalesResult = await Canales.findByIdAndUpdate(id, {
     nombre,
     descripcion,
     logo,
   }, { new: true })
 
-  if (!Canales) {
+  if (!CanalesResult) {
     return res.status(404).json({
       message: 'Canales not found',
     });
   }
 
   return res.json({
-    data: Canales,
+    data: CanalesResult,
   });
 });
 

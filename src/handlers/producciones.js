@@ -14,16 +14,16 @@ router.get('/', async (req, res) => {
 // Find Producciones by id
 router.get('/:id', async (req,res) => {
   const { id } = req.params;
-  const Producciones = await Producciones.findById(id);
+  const productions = await Producciones.findById(id);
 
-  if (!Producciones) {
+  if (!productions) {
     return res.status(404).json({
       message: 'Producciones not found',
     });
   }
 
   return res.json({
-    data: Producciones,
+    data: productions,
   });
 });
 
@@ -36,12 +36,12 @@ router.post('/', async (req, res) => {
 
   // TODO: Validate fields
 
-  const Producciones = new Producciones({
+  const productionTab = new Producciones({
     nombre,
     descripcion,
   });
 
-  await Producciones.save();
+  await productionTab.save();
   return res.status(201).json();
 });
 
@@ -63,19 +63,19 @@ router.put('/:id', async (req, res) => {
     descripcion,
   } = req.body;
 
-  const Producciones = await Producciones.findByIdAndUpdate(id, {
+  const ProduccionesResult = await Producciones.findByIdAndUpdate(id, {
     nombre,
     descripcion,
   }, { new: true })
 
-  if (!Producciones) {
+  if (!ProduccionesResult) {
     return res.status(404).json({
       message: 'Producciones not found',
     });
   }
 
   return res.json({
-    data: Producciones,
+    data: ProduccionesResult,
   });
 });
 

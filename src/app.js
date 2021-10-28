@@ -2,6 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // Connect to MongoDB
 const connectMongoDB = () => mongoose.connect('mongodb://localhost:27017/tvPaga', {
   useNewUrlParser: true,

@@ -14,16 +14,16 @@ router.get('/', async (req, res) => {
 // Find Capitulos by id
 router.get('/:id', async (req,res) => {
   const { id } = req.params;
-  const Capitulos = await Capitulos.findById(id);
+  const CapitulosResult = await Capitulos.findById(id);
 
-  if (!Capitulos) {
+  if (!CapitulosResult) {
     return res.status(404).json({
       message: 'Capitulos not found',
     });
   }
 
   return res.json({
-    data: Capitulos,
+    data: CapitulosResult,
   });
 });
 
@@ -38,14 +38,14 @@ router.post('/', async (req, res) => {
 
   // TODO: Validate fields
 
-  const Capitulos = new Capitulos({
+  const CapitulosTab = new Capitulos({
     media,
     bloques,
     duracion,
     estado,
   });
 
-  await Capitulos.save();
+  await CapitulosTab.save();
   return res.status(201).json();
 });
 
@@ -69,21 +69,21 @@ router.put('/:id', async (req, res) => {
     estado,
   } = req.body;
 
-  const Capitulos = await Capitulos.findByIdAndUpdate(id, {
+  const CapitulosResult = await Capitulos.findByIdAndUpdate(id, {
     media,
     bloques,
     duracion,
     estado,
   }, { new: true })
 
-  if (!Capitulos) {
+  if (!CapitulosResult) {
     return res.status(404).json({
       message: 'Capitulos not found',
     });
   }
 
   return res.json({
-    data: Capitulos,
+    data: CapitulosResult,
   });
 });
 
